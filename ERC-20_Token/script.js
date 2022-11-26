@@ -1,6 +1,6 @@
 const web3=new Web3(window.ethereum);
 let account='';
-let tokenAddress = "0xE8fFB8b4f04cd83ffd3C238D5Dc9412fE09B518d";
+let tokenAddress = "0xf2F855Eee4Def023EAcf3ceacA50E898bb072bC3";
 
 
 console.log("Js works!")
@@ -46,7 +46,7 @@ function addKAToken(){
         type: 'ERC20',
         options: {
           address: tokenAddress,
-          symbol: 'KA',
+          symbol: 'CSC',
           decimals: 18,
           image: '',
         },
