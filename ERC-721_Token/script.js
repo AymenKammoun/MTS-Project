@@ -47,9 +47,18 @@ function getAccount() {
 
 
 async function send(){
-    s.innerHTML="";
-    let uri = document.querySelector("#uri").value;
 
+    let address = document.getElementById('address').value;
+    let image = document.getElementById("image").value;
+    let room = document.getElementById("room").value;
+    let obj = {
+        address: address,
+        image: image,
+        room: room,
+    }
+    var uri = JSON.stringify(obj);
+
+    s.innerHTML="";
     let minABI = [
         {
             "inputs": [
@@ -70,7 +79,6 @@ async function send(){
             "type": "function"
         }
     ];
-
     let contract =new web3.eth.Contract(minABI,tokenAddress, { from: account});
 
 

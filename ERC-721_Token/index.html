@@ -2,153 +2,131 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Demo ERC-721</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo ERC-721</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <h1 class="text-center my-5">Web3 and MetaMask</h1>
-        <div class="row py-2">
-            <div class="col-6">
-                <button class="btn btn-primary" id="connect">
-            Connect to MetaMask
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">
+            Search
           </button>
-            </div>
-            <div class="col-6">
-                <p>Account: <span class="showAccount"></span></p>
-            </div>
-        </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1 class="text-center my-5">Web3 and MetaMask</h1>
+    <div class="row py-2">
+      <div class="col-6">
+        <button class="btn btn-primary" id="connect">
+          Connect to MetaMask
+        </button>
+      </div>
+      <div class="col-6">
+        <p>Account: <span class="showAccount"></span></p>
+      </div>
+    </div>
 
-        <div class="row py-2">
-            <div class="col-4">
-                URI: <input class="form-control" id="uri" type="text" />
-            </div>
-            <div class="col-4">
-                <button class="btn btn-primary" id="create">Create NFT</button>
-            </div>
-            <div class="col-4">
-                <p>NTF id: <span id="status"></span></p>
-            </div>
-        </div>
+    
 
-        <div class="row py-2">
-            <div class="col-4">
-                <button class="btn btn-primary" id="show">Show supply</button>
-            </div>
-            <div class="col-4">
-                <p>Total supply:<span id="supply"></span></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <button class="btn btn-primary" id="showNTFS">Show NTFs</button>
-            </div>
-            <div class="col-4">
-                <p id="nfts"></p>
-            </div>
-        </div>
-        <br />
-        <!-- adding info -->
-        <section class="container">
-            <!-- House Address -->
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">House address</label
-          >
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Please Enter your House Address"
-            id="address"
-          />
-        </div>
-        <!-- Nombre of Rooms -->
+    <div class="row py-2">
+      <div class="col-4">
+        <button class="btn btn-primary" id="show">Show supply</button>
+      </div>
+      <div class="col-4">
+        <p>Total supply:<span id="supply"></span></p>
+      </div>
+    </div>
+
+    <br />
+    <!-- adding info -->
+    <section class="container">
+      <!-- House Address -->
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">House address</label>
+        <input type="email" class="form-control" placeholder="Please Enter your House Address" id="address" />
+      </div>
+      <!-- Nombre of Rooms -->
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Room's number</label>
+        <select class="form-select" aria-label="Default select example" id="room">
+          <option selected aria-placeholder="">Select the number of thr rooms</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <br>
+        <!-- Image uploader -->
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Room's number</label
-    >
-    <select class="form-select" aria-label="Default select example" id="room" >
-            <option selected aria-placeholder="">Select the number of thr rooms</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-    <br>  
-    <!-- Image uploader -->
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">House's image</label
->
-                <input type="email" class="form-control" id="image" placeholder="Please Enter your House Image Using Image uploader , e.g https://imgbb.com">
-            </div>
-            <button class="btn btn-primary" type="submit" onclick="myfunc()">
-              Submit
-            </button>
-        </section>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js" integrity="sha512-vtUOC0YIaNm/UutU7yfnwqnF9LOYnXtpHe2kwi1nvJNloeGQuncNBiEKP/3Ww3D62USAhbXGsnYpAYoiDsa+wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script type="module" src="script.js"></script>
-        <script type="text/javascript">
-            function myfunc() {
-                let address = document.getElementById('address').value;
-                let image = document.getElementById("image").value;
-                let room = document.getElementById("room").value;
-                // console.log(address);
-                // console.log(image);
-                // console.log(room);
-                let obj = {
-                    address: address,
-                    image: image,
-                    room: room,
-                }
-                var URI = JSON.stringify(obj);
-                console.log(JSON.stringify(obj));
+          <label for="exampleFormControlInput1" class="form-label">House's image</label>
+          <input type="email" class="form-control" id="image"
+            placeholder="Please Enter your House Image Using Image uploader , e.g https://imgbb.com">
+        </div>
 
+        <div class="row py-2">
+          <div class="col-4">
+            <button class="btn btn-primary" id="create">Create NFT</button>
+          </div>
+          <div class="col-4">
+            <p>NTF id: <span id="status"></span></p>
+          </div>
+        </div>
+    </section>
 
-            }
-        </script>
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-primary" id="showNTFS">Show NTFs</button>
+      </div>
+      <div class="col-4">
+        <p id="nfts"></p>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"
+      integrity="sha512-vtUOC0YIaNm/UutU7yfnwqnF9LOYnXtpHe2kwi1nvJNloeGQuncNBiEKP/3Ww3D62USAhbXGsnYpAYoiDsa+wA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
