@@ -1,6 +1,6 @@
 const web3=new Web3(window.ethereum);
 let account='';
-let tokenAddress = "0xd3D84A7Ff1e225163Bf7673339a99c681902ED63"
+let tokenAddress = "0xc4BC1C66A9aAA077E4147F95De2B23D3E0Cb6a54"
 let totalSupplyInt=0;
 
 console.log("Js works!")
@@ -80,8 +80,6 @@ async function send(){
         }
     ];
     let contract =new web3.eth.Contract(minABI,tokenAddress, { from: account});
-
-
     s.innerHTML="Creating";
     let data = await contract.methods.safeMint(account, uri).send();
     console.log(data);
@@ -114,7 +112,7 @@ function showSupply()
     });
 }
 
-function showAllNfts()
+async function showAllNfts()
 {
     let minABI = [
         {
@@ -139,12 +137,14 @@ function showAllNfts()
     ];
 
     let contract =new web3.eth.Contract(minABI,tokenAddress, { from: account});
-    document.querySelector('#nfts').innerHTML='';
+    document.querySelector('#nftRow').innerHTML='';
     for(let i=0;i<totalSupplyInt;i++)
     {
-        contract.methods.tokenURI(i).call().then((response)=>{
-            document.querySelector('#nfts').innerHTML+=response+"<br>";
-        });
+        let response= await contract.methods.tokenURI(i).call();
+        let obj=JSON.parse(response);
+        let card='<div class="col-4 my-2"><div class="card"><img src="'+obj.image+'" class="card-img-top" alt="..." style="height:300px"><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text"><div>Adress: <span>'+obj.address+'</span></div><div>Rooms: <span>'+obj.room+'</span></div></p><a href="https://google.com" target="_blank" class="btn btn-primary">Visit house in Metaverse</a></div></div></div>\n';
+        document.querySelector('#nftRow').innerHTML+=card;
+        
     }
     
 }
