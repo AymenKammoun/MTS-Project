@@ -133,7 +133,7 @@ async function showAllNfts() {
     for (let i = 0; i < totalSupplyInt; i++) {
         let response = await contract.methods.tokenURI(i).call();
         let obj = JSON.parse(response);
-        let card = '<div class="col-4 my-2"><div class="card"><img src="' + obj.image + '" class="card-img-top" alt="..." style="height:300px"><div class="card-body"><h5 class="card-title">House Owner:' + obj.account + '</h5><p class="card-text"><div>Adress: <span>' + obj.address + '</span></div><div>Rooms: <span>' + obj.room + '</span></div><div>Price: <span>' + obj.price + 'CSC</span></div></p><div style="display:flex;justify-content:space-between" ><a href="' + obj.mona + '" target="_blank" class="btn btn-primary">Visit house in Mona</a><button class="btn btn-primary" onClick="pay(' + "'" + obj.account + "'" + ',' + "'" + obj.price + "'" + ')">Pay</button></div></div></div></div>\n';
+        let card = '<div class="col-4 my-2"><div class="card"><img src="' + obj.image + '" class="card-img-top" alt="..." style="height:300px"><div class="card-body"><h6 class="card-title"><div>House Owner:<div>' + obj.account + '</h6><p class="card-text"><div>Adress: <span>' + obj.address + '</span></div><div>Rooms: <span>' + obj.room + '</span></div><div>Price: <span>' + obj.price + 'CSC</span></div></p><div style="display:flex;justify-content:space-between" ><a href="' + obj.mona + '" target="_blank" class="btn btn-primary">Visit house in Mona</a><button class="btn btn-primary" onClick="pay(' + "'" + obj.account + "'" + ',' + "'" + obj.price + "'" + ')">Pay</button></div></div></div></div>\n';
         document.querySelector('#nftRow').innerHTML += card;
     }
 }
