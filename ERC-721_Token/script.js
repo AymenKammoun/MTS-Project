@@ -1,6 +1,7 @@
 const web3=new Web3(window.ethereum);
 let account='';
 let tokenAddress = "0xd3D84A7Ff1e225163Bf7673339a99c681902ED63"
+let totalSupplyInt=0;
 
 console.log("Js works!")
 if (typeof window.ethereum !== 'undefined')
@@ -100,6 +101,7 @@ function showSupply()
 
     let contract =new web3.eth.Contract(minABI,tokenAddress, { from: account});
     contract.methods.totalSupply().call().then((response)=>{
+        totalSupplyInt=parseInt(response,10);
         document.querySelector("#supply").innerHTML=response;
     });
 }
@@ -108,13 +110,19 @@ function showAllNfts()
 {
     let minABI = [
         {
-            "inputs": [],
-            "name": "totalSupply",
-            "outputs": [
+            "inputs": [
                 {
                     "internalType": "uint256",
-                    "name": "",
+                    "name": "token_Id",
                     "type": "uint256"
+                }
+            ],
+            "name": "tokenURI",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
                 }
             ],
             "stateMutability": "view",
@@ -123,8 +131,12 @@ function showAllNfts()
     ];
 
     let contract =new web3.eth.Contract(minABI,tokenAddress, { from: account});
-    contract.methods.totalSupply().call().then((response)=>{
-        console.log(typeof(response.int()));
-        document.querySelector("#supply").innerHTML=response;
-    });
+    document.querySelector('#nfts').innerHTML='';
+    for(let i=0;i<totalSupplyInt;i++)
+    {
+        contract.methods.tokenURI(i).call().then((response)=>{
+            document.querySelector('#nfts').innerHTML+=response+"<br>";
+        });
+    }
+    
 }
