@@ -11,6 +11,18 @@
 <body>
     <h1 style="text-align: center; margin-top:5%">Create NFT House</h1>
     <section class="container border p-5 my-5 shadow rounded">
+        <div class="row py-2">
+            <div class="col-6">
+                <button class="btn btn-primary" id="connect">
+          Connect to MetaMask
+        </button>
+            </div>
+            <div class="col-6">
+                <p>Account: <span class="showAccount"></span></p>
+            </div>
+        </div>
+    </section>
+    <section class="container border p-5 my-5 shadow rounded">
         <!-- House Address -->
         <div class="mb-3">
             <label for="address" class="form-label">House address</label>
@@ -51,59 +63,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js" integrity="sha512-vtUOC0YIaNm/UutU7yfnwqnF9LOYnXtpHe2kwi1nvJNloeGQuncNBiEKP/3Ww3D62USAhbXGsnYpAYoiDsa+wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="module" src="script.js"></script>
-    <script>
-        const web3 = new Web3(window.ethereum);
-        let account = "";
-        let CurrencytokenAddress = "0xf2F855Eee4Def023EAcf3ceacA50E898bb072bC3";
-        ethereum
-            .request({
-                method: "eth_requestAccounts",
-            })
-            .then((accounts) => {
-                account = accounts[0];
-            });
-
-        function pay(to, amountt) {
-            const s = document.querySelector("#payStatus");
-            s.innerHTML = "";
-
-            let minABI = [{
-                inputs: [{
-                    internalType: "address",
-                    name: "to",
-                    type: "address",
-                }, {
-                    internalType: "uint256",
-                    name: "amount",
-                    type: "uint256",
-                }, ],
-                name: "transfer",
-                outputs: [{
-                    internalType: "bool",
-                    name: "",
-                    type: "bool",
-                }, ],
-                stateMutability: "nonpayable",
-                type: "function",
-            }, ];
-
-            let contract = new web3.eth.Contract(minABI, CurrencytokenAddress, {
-                from: account,
-            });
-            let amount = web3.utils.toHex(Web3.utils.toWei(amountt));
-
-            s.innerHTML = "Sending";
-            let data = contract.methods
-                .transfer(to, amount)
-                .send()
-                .then((value) => {
-                    if (value.status == true) {
-                        s.innerHTML = "Done!";
-                    } else {
-                        s.innerHTML = "Error!";
-                    }
-                });
-        }
-    </script>
+    <script type="module" src="script2.js"></script>
+    
 </body>
+</html>

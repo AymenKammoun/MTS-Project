@@ -12,8 +12,7 @@ if (typeof window.ethereum !== 'undefined') {
 }
 const connectBtn = document.querySelector("#connect");
 const showAccount = document.querySelector('.showAccount');
-const createNFT = document.querySelector('#create');
-const s = document.querySelector('#status');
+
 const show = document.querySelector('#show');
 const supply = document.querySelector('#supply');
 const showNTFS = document.querySelector('#showNTFS');
@@ -32,9 +31,7 @@ connectBtn.addEventListener('click', () => {
     getAccount();
 });
 
-createNFT.addEventListener('click', () => {
-    send();
-})
+
 
 function getAccount() {
     ethereum.request({ method: 'eth_requestAccounts' }).then(accounts => {
