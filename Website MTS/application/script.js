@@ -1,6 +1,6 @@
 const web3 = new Web3(window.ethereum);
 let account = '';
-let NTFtokenAddress = "0xc4BC1C66A9aAA077E4147F95De2B23D3E0Cb6a54"
+let NTFtokenAddress = "0x9cC87f956859484F6B36be42A113fa5574448563"
 let CurrencytokenAddress = "0xf2F855Eee4Def023EAcf3ceacA50E898bb072bC3";
 let totalSupplyInt = 0;
 
